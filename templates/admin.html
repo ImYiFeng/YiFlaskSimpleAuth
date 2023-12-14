@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>控制台</title>
+</head>
+<body bgcolor="black" text="white">
+    <h1>欢迎来到塔卫二，管理员（不是</h1>
+    <table>
+        <tr>
+            <th>ID</th>
+            <th>用户名</th>
+            <th>操作</th>
+        </tr>
+        {% for user in users %}
+        <tr>
+            <td>{{ user.id }}</td>
+            <td>{{ user.username }}</td>
+            <td>
+                <form action="{{ url_for('delete_user', user_id=user.id) }}" method="post">
+                    <input type="submit" value="删除">
+                </form>
+                <form action="{{ url_for('change_password', user_id=user.id) }}" method="post">
+                    <input type="password" name="new_password">
+                    <input type="submit" value="更改密码">
+                </form>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>
